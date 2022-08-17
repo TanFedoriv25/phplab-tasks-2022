@@ -19,6 +19,8 @@
 
 namespace functions;
 
+use Prophecy\Exception\InvalidArgumentException;
+
 class Functions
 {
     /**
@@ -57,7 +59,9 @@ class Functions
      */
     public function sayHelloArgumentWrapper($arg): string
     {
-        // put your code here
+        if (!is_numeric($arg) && !is_string($arg) && !is_bool($arg)) {
+            throw new \InvalidArgumentException("Function allowed only number, string or bool");
+        }
 
         return $this->sayHelloArgument($arg);
     }
@@ -91,6 +95,14 @@ class Functions
      */
     public function countArgumentsWrapper(): array
     {
-        // put your code here
+        $array = func_get_args();
+
+        array_walk($array, function ($value) {
+            if (!is_string($value)) {
+                throw new \InvalidArgumentException('Function allowed only strings as argument');
+            }
+        });
+
+        return $this->countArguments(...$array);
     }
 }
