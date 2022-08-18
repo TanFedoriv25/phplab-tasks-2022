@@ -24,10 +24,10 @@ class CountArgumentsWrapperTest extends TestCase
     public function exceptionDataProvider(): array
     {
         return [
-            [array(-1.23, 56)],
-            [array('flower', true)],
-            [array('25', NULL)],
-            [array('array', array('one', 'two'))]
+            [[-1.23, 56]],
+            [['flower', true]],
+            [['25', null]],
+            [['array', ['one', 'two']]]
         ];
     }
 }

@@ -24,8 +24,8 @@ class SayHelloArgumentWrapperTest extends TestCase
     public function exceptionDataProvider(): array
     {
         return [
-            [array('hello', 2, -1.6)],
-            [NULL],
+            [['hello', 2, -1.6]],
+            [null],
             [new DateTime()]
         ];
     }
