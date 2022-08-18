@@ -21,12 +21,12 @@ class Strings implements StringsInterface
     public function mirrorMultibyteString(string $input): string
     {
         $str = explode(' ', $input);
-        $mirrorString = array();
+        $mirrorString = [];
 
         $i = 0;
         foreach ($str as $s) {
             $mirrorString[$i] = '';
-            for ($j = mb_strlen($s); $j>=0; $j--) {
+            for ($j = mb_strlen($s); $j >= 0; $j--) {
                 $mirrorString[$i] .= mb_substr($s, $j, 1);
             }
             $i++;
