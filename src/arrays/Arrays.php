@@ -11,7 +11,7 @@ class Arrays implements ArraysInterface
      */
     public function repeatArrayValues(array $input): array
     {
-        $resultArray = array();
+        $resultArray = [];
 
         for ($i = 0; $i < sizeof($input); $i++) {
             $resultArray = array_merge($resultArray, array_fill(0, $input[$i], $input[$i]));
@@ -42,8 +42,6 @@ class Arrays implements ArraysInterface
         foreach ($input as $a) {
             foreach ($a['tags'] as $tag) {
                 $result[$tag][] = $a['name'];
-                var_dump($result);
-                echo "<br>";
             }
         }
 
@@ -52,8 +50,6 @@ class Arrays implements ArraysInterface
         foreach ($result as $key => &$value) {
             sort($value);
         }
-
-        unset($value);
 
         return $result;
     }
