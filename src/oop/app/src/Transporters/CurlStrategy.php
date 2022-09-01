@@ -16,7 +16,7 @@ class CurlStrategy implements TransportInterface
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         $content = curl_exec($ch);
-        //curl_close($ch);
+
         return iconv('CP1251', mb_detect_encoding($content), $content);
     }
 }

@@ -18,15 +18,18 @@ class Scrapper
 {
     private TransportInterface $transporter;
     private ParserInterface $parser;
+    private Movie $movie;
 
     /**
      * @param TransportInterface $transporter
      * @param ParserInterface $parser
+     * @param Movie $movie
      */
-    public function __construct(TransportInterface $transporter, ParserInterface $parser)
+    public function __construct(TransportInterface $transporter, ParserInterface $parser, Movie $movie)
     {
         $this->transporter = $transporter;
         $this->parser = $parser;
+        $this->movie = $movie;
     }
 
     /**
@@ -37,11 +40,10 @@ class Scrapper
     {
         $data = $this->parser->parseContent($this->transporter->getContent($url));
 
-        $movie = new Movie();
-        $movie->setTitle($data['title']);
-        $movie->setDescription($data['description']);
-        $movie->setPoster($data['poster']);
+        $this->movie->setTitle($data['title']);
+        $this->movie->setDescription($data['description']);
+        $this->movie->setPoster($data['poster']);
 
-        return $movie;
+        return $this->movie;
     }
 }
